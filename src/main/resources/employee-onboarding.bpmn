@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <bpmn:process id="employeeOnboardingProcess" name="Employee Onboarding Process" isExecutable="true">
+    <bpmn:startEvent id="startEvent" name="Start Onboarding"/>
+    <bpmn:sequenceFlow id="flow1" sourceRef="startEvent" targetRef="submitDocuments"/>
+    <bpmn:userTask id="submitDocuments" name="Submit Documents" camunda:assignee="employee"/>
+    <bpmn:sequenceFlow id="flow2" sourceRef="submitDocuments" targetRef="scheduleOrientation"/>
+    <bpmn:userTask id="scheduleOrientation" name="Schedule Orientation" camunda:assignee="hr"/>
+    <bpmn:sequenceFlow id="flow3" sourceRef="scheduleOrientation" targetRef="setupAccount"/>
+    <bpmn:userTask id="setupAccount" name="Setup Account" camunda:assignee="it"/>
+    <bpmn:sequenceFlow id="flow4" sourceRef="setupAccount" targetRef="endEvent"/>
+    <bpmn:endEvent id="endEvent" name="Onboarding Complete"/>
+  </bpmn:process>
+</bpmn:definitions>
